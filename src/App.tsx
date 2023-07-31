@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 
@@ -48,7 +47,9 @@ function App() {
     StartDate: "",
     EndDate: "",
   });
-  const [EventClickedState, setEventClickedState] = useState<Notes | Workout>();
+  const [EventClickedState, setEventClickedState] = useState<
+    Notes | Workout | any
+  >();
   const [inputWorkout, setinputWorkout] = useState("");
   const [inputNote, setinputNote] = useState("");
   const [MyEvents, setMyEvents] = useState([
@@ -300,7 +301,8 @@ export const EventModal: React.FC<EventModalProps> = ({
   HandleSubmitEventUpdate,
   HandleDeleteEvent,
 }) => {
-  console.log(EventClickedState);
+  const isWorkout = EventClickedState?.type === "Workout";
+
   return (
     <>
       {eventModal && (
@@ -349,8 +351,7 @@ export const EventModal: React.FC<EventModalProps> = ({
                   onSubmit={(e) => HandleSubmitEventUpdate(e)}
                 >
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Update{" "}
-                    {EventClickedState.type == "Workout" ? "workout" : "note"}
+                    Update {isWorkout ? "workout" : "note"}
                   </label>
                   <input
                     type="text"
@@ -405,7 +406,7 @@ export const EventModal: React.FC<EventModalProps> = ({
                       value={EventClickedState.end}
                       onChange={(e) =>
                         setEventClickedState({
-                          ...EventClickedState,
+                          ...(EventClickedState as Notes),
                           end: e.target.value,
                         })
                       }

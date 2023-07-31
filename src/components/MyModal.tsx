@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { v4 as uuidv4 } from "uuid";
 export const MyModal = ({
   modal,
@@ -156,7 +157,7 @@ const Create_Note = ({
               placeholder="Select date"
               value={dateSelect2.StartDate}
               onChange={(e) => {
-                setdateSelect2((prev) => ({
+                setdateSelect2((prev: any) => ({
                   ...prev,
                   StartDate: e.target.value,
                 }));
@@ -169,7 +170,7 @@ const Create_Note = ({
               placeholder="Select date"
               value={dateSelect2.EndDate}
               onChange={(e) => {
-                setdateSelect2((prev) => ({
+                setdateSelect2((prev: any) => ({
                   ...prev,
                   EndDate: e.target.value,
                 }));
