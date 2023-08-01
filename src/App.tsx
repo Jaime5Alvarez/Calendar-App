@@ -247,7 +247,7 @@ function App() {
         <div className="flex justify-start mb-2">
           <button
             onClick={DeleteWorkout}
-            className={` bg-[#526d82df] rounded-lg px-3 ease-in-out text-white duration-200 py-1 ${
+            className={` bg-[#526d82df] rounded-lg px-3 ease-in-out text-white  py-1 ${
               SelectedEventInfo.length == 0 && "opacity-60  cursor-not-allowed"
             } `}
           >
